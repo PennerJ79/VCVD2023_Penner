@@ -69,3 +69,21 @@ class calculations:
     #------------------------------------------
     def Wkin_calc(vehMass, velocity, W_loss):
         return ((vehMass * velocity**2) / 2) + W_loss # [J] negative W_loss
+    
+    #------------------------------------------
+    # Calculations for rule of thumb
+    # Input parameters: 
+    #------------------------------------------
+    def ruleThumb(vel0, distArray, i, RS_names, roadSurf):
+        distNormal = (vel0 / 10)**2 # normal distance
+        distDanger = ((vel0 / 10)**2) * 0.5 # distance danger
+        distReaction = ((vel0 / 10)**2) * 3 # distance reaction
+        distStop = distNormal + distReaction # distance stopping
+        distDanger = distDanger + distReaction # distance stopping dangerous
+        print('\n\nRule of thumb stopping distances based on vehicle speed'
+                '\n-------------------------------------------------------\n')
+        print('Normal stopping distance: %0.2f' % (distStop) + 'm')
+        print('Danger stopping distance: %0.2f' % (distDanger) + 'm')
+        print('\nSimulated stopping distance only from coasting with road/tire friction losses')
+        print('Simulated traveled distance for ' + RS_names[str(roadSurf[i])] \
+              + ': %0.02f' % (distArray[-1]) + '\n\n')

@@ -40,9 +40,9 @@ def main ():
     time_step = 0.01 # s (time step)
     timeArray = np.array(0) # initialize time array
 
-    # -----------------------------------------------------
-    # use argparser to select specific friction coefficient
-    # -----------------------------------------------------
+    # -------------------------------------------------------------
+    # creation of argparser to select specific friction coefficient
+    # -------------------------------------------------------------
     parser = argparse.ArgumentParser(description='Choose specific friction coefficient value')
     parser.add_argument('-f','--friction', type=float, default=1, \
                         help='Specify alternative surface friction coefficient')
@@ -124,6 +124,9 @@ def main ():
         distArraySave[i] = distArray
         velArraySave[i] = velArray
         timeArraySave[i] = timeArray
+
+        # Rule of thumb calculations
+        cm.calculations.ruleThumb(vel0, distArray, i, RS_names, roadSurf)
 
         # reset simulation variables to zero
         velocity = vel0; velocityPrev = vel0 # reset velocity variables
